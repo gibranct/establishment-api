@@ -10,10 +10,11 @@ app.use(express.json({ limit: '50mb' }))
 app.use(express.urlencoded({ extended: true }))
 
 morgan.token('body', (req: express.Request) => {
-  const isNotGet = req.method !== 'GET'
-  const isNotAudio = !req.url.includes('audios')
-  if (isNotGet && isNotAudio) {
-    return JSON.stringify(req.body)
+  const isTheContentJson = req.headers['content-type']?.includes(
+    'application/json'
+  );
+  if (isTheContentJson) {
+    return JSON.stringify(req.body);
   }
   return 'body-empty'
 })
