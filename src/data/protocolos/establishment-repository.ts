@@ -15,5 +15,5 @@ export interface EstablishmentRepository {
 
   findById(id: number): Promise<Establishment | null>
 
-  findAll(params: PaginationParams): Promise<Array<Establishment>>
+  findAll(params: PaginationParams): Promise<[number, Array<Establishment>]>
 }

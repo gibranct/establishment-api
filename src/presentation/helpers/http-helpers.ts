@@ -18,10 +18,15 @@ export const serverError = (error: Error): HttpResponse => ({
   message: error.message,
 })
 
-export const ok = (data: any, message?: string): HttpResponse => ({
+export const ok = (
+  data: any,
+  message?: string,
+  total?: number
+): HttpResponse => ({
   status: 200,
   message,
   data,
+  totalRegisters: total,
 })
 
 export const created = (data: any, message?: string): HttpResponse => ({

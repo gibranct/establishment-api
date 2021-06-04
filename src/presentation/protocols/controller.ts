@@ -5,6 +5,7 @@ export type HttpResponse = {
   title?: string
   message?: string
   data?: any
+  totalRegisters?: number
 }
 
 export interface Controller {

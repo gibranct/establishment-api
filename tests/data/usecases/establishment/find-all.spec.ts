@@ -26,7 +26,7 @@ describe('FindAllEstablishment', () => {
       query: 'fake_query',
     }
     const response = await sut.handle(params)
-    expect(response).toEqual([])
+    expect(response).toEqual([0, []])
     expect(findAllSpy).toHaveBeenCalledWith(params)
   })
 })

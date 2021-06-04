@@ -8,8 +8,8 @@ import {
 export const makeEstablishmentRepositoryStub = (): EstablishmentRepository => {
   class EstablishmentRepositoryStub implements EstablishmentRepository {
     // eslint-disable-next-line no-unused-vars
-    findAll(params: PaginationParams): Promise<Establishment[]> {
-      return Promise.resolve([])
+    findAll(params: PaginationParams): Promise<[number, Establishment[]]> {
+      return Promise.resolve([0, []])
     }
 
     // eslint-disable-next-line no-unused-vars
