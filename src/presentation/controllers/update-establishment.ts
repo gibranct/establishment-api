@@ -1,9 +1,15 @@
-import { EstablishmentRepository } from '@/data/protocolos'
 import { ValidationError } from 'yup'
 import { Request, Response } from 'express'
 
+import { EstablishmentRepository } from '@/data/protocolos'
 import { UpdateEstablishment } from '@/data/usecases/establishment'
 import { Controller, HttpResponse } from '@/presentation/protocols/controller'
+import {
+  badRequest,
+  serverError,
+  notFound,
+  ok,
+} from '@/presentation/helpers/http-helpers'
 
 export class UpdateEstablishmentController implements Controller {
   private readonly updateEstablishment: UpdateEstablishment
@@ -26,30 +32,16 @@ export class UpdateEstablishmentController implements Controller {
       )
 
       if (!hasEstablishment) {
-        return res.status(404).json({
-          status: 404,
-          message: 'Estabelecimento não encontrado',
-        })
+        return res.status(404).json(notFound('Estabelecimento não encontrado'))
       }
 
       await this.updateEstablishment.handle(establishmentId, req.body)
-      return res.json({
-        status: 200,
-        message: 'Estabelecimento atualizado',
-      })
+      return res.json(ok(null, 'Estabelecimento atualizado'))
     } catch (error) {
       if (error instanceof ValidationError) {
-        return res.status(400).json({
-          status: 400,
-          title: 'Campos Inválidos',
-          message: error.message,
-        })
+        return res.status(400).json(badRequest(error))
       }
-      return res.status(500).json({
-        status: 500,
-        title: 'Erro Interno no servidor',
-        message: error.message,
-      })
+      return res.status(500).json(serverError(error))
     }
   }
 }
