@@ -1,6 +1,7 @@
 import { EstablishmentRepository } from '@/data/protocolos'
 import {
-  CreateEstablishment,
+  UpdateEstablishment,
+  UpdateEstablishmentProps,
   CreateEstablishmentProps,
   establishmentValidationSchema,
 } from '@/data/usecases/establishment'
@@ -10,7 +11,7 @@ import { ValidationError } from 'yup'
 const makeEstablishmentRepositoryStub = (): EstablishmentRepository => {
   class EstablishmentRepositoryStub implements EstablishmentRepository {
     // eslint-disable-next-line no-unused-vars
-    async update(id: number, data: CreateEstablishmentProps): Promise<void> {
+    async update(id: number, data: UpdateEstablishmentProps): Promise<void> {
       return Promise.resolve()
     }
 
@@ -24,20 +25,20 @@ const makeEstablishmentRepositoryStub = (): EstablishmentRepository => {
 }
 
 type SutTypes = {
-  sut: CreateEstablishment
+  sut: UpdateEstablishment
   establishmentRepoStub: EstablishmentRepository
 }
 
 const makeSut = (): SutTypes => {
   const establishmentRepoStub = makeEstablishmentRepositoryStub()
-  const sut = new CreateEstablishment(establishmentRepoStub)
+  const sut = new UpdateEstablishment(establishmentRepoStub)
   return {
     sut,
     establishmentRepoStub,
   }
 }
 
-const makeFakeEstablishment = (): CreateEstablishmentProps => ({
+const makeFakeEstablishment = (): UpdateEstablishmentProps => ({
   cnpj: '82321089000152',
   name: 'fake_name',
   address: {
@@ -49,19 +50,21 @@ const makeFakeEstablishment = (): CreateEstablishmentProps => ({
   },
 })
 
+const FAKE_ID = 1
+
 describe('CreatePauseSchedule', () => {
   test('deve chamar o validator com os valores corretos', async () => {
     const { sut } = makeSut()
     const validateSpy = jest.spyOn(establishmentValidationSchema, 'validate')
     const props = makeFakeEstablishment()
-    await sut.handle(props)
+    await sut.handle(FAKE_ID, props)
     expect(validateSpy).toHaveBeenCalledWith(props)
   })
 
   test('deve retornar um erro se o nome não for passado', async () => {
     try {
       const { sut } = makeSut()
-      const response = await sut.handle({
+      const response = await sut.handle(FAKE_ID, {
         ...makeFakeEstablishment(),
         name: undefined,
       })
@@ -74,7 +77,7 @@ describe('CreatePauseSchedule', () => {
   test('deve retornar um erro se o CNPJ não for passado', async () => {
     try {
       const { sut } = makeSut()
-      const response = await sut.handle({
+      const response = await sut.handle(FAKE_ID, {
         ...makeFakeEstablishment(),
         cnpj: undefined,
       })
@@ -87,7 +90,7 @@ describe('CreatePauseSchedule', () => {
   test('deve retornar um erro se o cep do endereço não for passado', async () => {
     try {
       const { sut } = makeSut()
-      const response = await sut.handle({
+      const response = await sut.handle(FAKE_ID, {
         ...makeFakeEstablishment(),
         address: {
           ...makeFakeEstablishment().address,
@@ -103,7 +106,7 @@ describe('CreatePauseSchedule', () => {
   test('deve retornar um erro se o cidade do endereço não for passado', async () => {
     try {
       const { sut } = makeSut()
-      const response = await sut.handle({
+      const response = await sut.handle(FAKE_ID, {
         ...makeFakeEstablishment(),
         address: {
           ...makeFakeEstablishment().address,
@@ -119,7 +122,7 @@ describe('CreatePauseSchedule', () => {
   test('deve retornar um erro se o bairro do endereço não for passado', async () => {
     try {
       const { sut } = makeSut()
-      const response = await sut.handle({
+      const response = await sut.handle(FAKE_ID, {
         ...makeFakeEstablishment(),
         address: {
           ...makeFakeEstablishment().address,
@@ -135,7 +138,7 @@ describe('CreatePauseSchedule', () => {
   test('deve retornar um erro se o estado do endereço não for passado', async () => {
     try {
       const { sut } = makeSut()
-      const response = await sut.handle({
+      const response = await sut.handle(FAKE_ID, {
         ...makeFakeEstablishment(),
         address: {
           ...makeFakeEstablishment().address,
@@ -151,7 +154,7 @@ describe('CreatePauseSchedule', () => {
   test('deve retornar um erro se o rua do endereço não for passado', async () => {
     try {
       const { sut } = makeSut()
-      const response = await sut.handle({
+      const response = await sut.handle(FAKE_ID, {
         ...makeFakeEstablishment(),
         address: {
           ...makeFakeEstablishment().address,
@@ -167,7 +170,7 @@ describe('CreatePauseSchedule', () => {
   test('deve retornar um erro se o CNPJ for inválido', async () => {
     try {
       const { sut } = makeSut()
-      const response = await sut.handle({
+      const response = await sut.handle(FAKE_ID, {
         ...makeFakeEstablishment(),
         cnpj: '432242',
       })
@@ -179,9 +182,9 @@ describe('CreatePauseSchedule', () => {
 
   test('deve chamar o repositório com os valores corretos', async () => {
     const { sut, establishmentRepoStub } = makeSut()
-    const createSpy = jest.spyOn(establishmentRepoStub, 'create')
+    const createSpy = jest.spyOn(establishmentRepoStub, 'update')
     const body = makeFakeEstablishment()
-    await sut.handle(body)
-    expect(createSpy).toHaveBeenCalledWith(body)
+    await sut.handle(FAKE_ID, body)
+    expect(createSpy).toHaveBeenCalledWith(FAKE_ID, body)
   })
 })
