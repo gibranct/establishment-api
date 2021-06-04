@@ -1,5 +1,5 @@
 import { EstablishmentRepository } from '@/data/protocolos'
-import { establishmentValidationSchema } from '@/data/usecases/validation-schema'
+import { establishmentValidationSchema } from '@/data/usecases/establishment'
 
 export type CreateEstablishmentProps = {
   cnpj?: string

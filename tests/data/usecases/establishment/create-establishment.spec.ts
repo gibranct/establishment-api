@@ -1,6 +1,9 @@
 import { EstablishmentRepository } from '@/data/protocolos'
-import { CreateEstablishment, CreateEstablishmentProps } from '@/data/usecases'
-import { establishmentValidationSchema } from '@/data/usecases/validation-schema'
+import {
+  CreateEstablishment,
+  CreateEstablishmentProps,
+  establishmentValidationSchema,
+} from '@/data/usecases/establishment'
 import { Establishment } from '@/domain/entities'
 import { ValidationError } from 'yup'
 
