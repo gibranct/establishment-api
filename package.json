@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored && webpack --config webpack.config.js",
     "start": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
-    "test": "export NODE_ENV=test && jest --detectOpenHandles --watch"
+    "test": "jest --passWithNoTests --verbose --noStackTrace --runInBand --unhandled-rejections=strict --watch"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
@@ -42,6 +42,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "cpf-cnpj-validator": "^1.0.3",
     "dotenv": "^8.2.0",
     "env-var": "^6.3.0",
     "express": "^4.17.1",
