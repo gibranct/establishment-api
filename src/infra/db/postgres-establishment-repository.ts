@@ -49,8 +49,17 @@ export class PostgresEstablishmentRepository
     })
   }
 
-  // eslint-disable-next-line no-unused-vars
-  findAll(params: PaginationParams): Promise<Establishment[]> {
-    return Promise.resolve([])
+  async findAll(params: PaginationParams): Promise<[number, Establishment[]]> {
+    const [data, count] = await getRepository(Establishment)
+      .createQueryBuilder('es')
+      .where(`es.addressCity ILIKE '%${params.query || ''}%'`)
+      .orWhere(`es.addressNeighborhood ILIKE '%${params.query || ''}%'`)
+      .orWhere(`es.addressState ILIKE '%${params.query || ''}%'`)
+      .orWhere(`es.addressStreet ILIKE '%${params.query || ''}%'`)
+      .limit(Number.parseInt(String(params.limit), 10))
+      .offset(Number.parseInt(String(params.offset), 10))
+      .getManyAndCount()
+
+    return [count, data]
   }
 }
