@@ -25,9 +25,10 @@ export class PostgresEstablishmentRepository
     return newEstablishment
   }
 
-  // eslint-disable-next-line no-unused-vars
-  findById(id: number): Promise<Establishment | null> {
-    return Promise.resolve(new Establishment())
+  async findById(id: number): Promise<Establishment | null> {
+    const establishment = await getRepository(Establishment).findOne(id)
+
+    return establishment ?? null
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -35,9 +36,18 @@ export class PostgresEstablishmentRepository
     return Promise.resolve()
   }
 
-  // eslint-disable-next-line no-unused-vars
   async update(id: number, data: UpdateEstablishmentProps): Promise<void> {
-    return Promise.resolve()
+    await getRepository(Establishment).update(id, {
+      cnpj: data.cnpj,
+      name: data!.name,
+      address: {
+        zipCode: data.address?.zipCode,
+        neighborhood: data.address?.neighborhood,
+        city: data.address?.city,
+        state: data.address?.state,
+        street: data.address?.street,
+      },
+    })
   }
 
   // eslint-disable-next-line no-unused-vars
