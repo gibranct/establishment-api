@@ -1,5 +1,5 @@
 import { Establishment } from '@/domain/entities'
-import { EstablishmentRepository } from '@/data/protocolos'
+import { EstablishmentRepository, PaginationParams } from '@/data/protocolos'
 import {
   UpdateEstablishmentProps,
   CreateEstablishmentProps,
@@ -7,6 +7,11 @@ import {
 
 export const makeEstablishmentRepositoryStub = (): EstablishmentRepository => {
   class EstablishmentRepositoryStub implements EstablishmentRepository {
+    // eslint-disable-next-line no-unused-vars
+    findAll(params: PaginationParams): Promise<Establishment[]> {
+      return Promise.resolve([])
+    }
+
     // eslint-disable-next-line no-unused-vars
     findById(id: number): Promise<Establishment | null> {
       return Promise.resolve(new Establishment())
