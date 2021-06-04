@@ -2,7 +2,7 @@ export default {
   clearMocks: true,
   coverageDirectory: 'coverage',
   moduleNameMapper: {
-    '@/tests/(.*)': '<rootDir>/tests/$1',
+    '@tests/(.*)': '<rootDir>/tests/$1',
     '@/(.*)': '<rootDir>/src/$1',
   },
   preset: 'ts-jest',

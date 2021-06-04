@@ -19,7 +19,8 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@tests/*": ["./tests/*"],
+      "@/*": ["./src/*"],
     },
     "suppressImplicitAnyIndexErrors": true
   },

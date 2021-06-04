@@ -1,28 +1,11 @@
+import { ValidationError } from 'yup'
 import { EstablishmentRepository } from '@/data/protocolos'
 import {
   UpdateEstablishment,
   UpdateEstablishmentProps,
-  CreateEstablishmentProps,
   establishmentValidationSchema,
 } from '@/data/usecases/establishment'
-import { Establishment } from '@/domain/entities'
-import { ValidationError } from 'yup'
-
-const makeEstablishmentRepositoryStub = (): EstablishmentRepository => {
-  class EstablishmentRepositoryStub implements EstablishmentRepository {
-    // eslint-disable-next-line no-unused-vars
-    async update(id: number, data: UpdateEstablishmentProps): Promise<void> {
-      return Promise.resolve()
-    }
-
-    // eslint-disable-next-line no-unused-vars
-    async create(data: CreateEstablishmentProps): Promise<Establishment> {
-      return Promise.resolve(new Establishment())
-    }
-  }
-
-  return new EstablishmentRepositoryStub()
-}
+import { makeEstablishmentRepositoryStub } from '@tests/data/mocks/establishment-repository'
 
 type SutTypes = {
   sut: UpdateEstablishment
