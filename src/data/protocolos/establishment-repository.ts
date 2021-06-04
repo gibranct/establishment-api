@@ -7,4 +7,6 @@ export interface EstablishmentRepository {
   update(id: number, data: CreateEstablishmentProps): Promise<void>
 
   remove(id: number): Promise<void>
+
+  findById(id: number): Promise<Establishment | null>
 }
