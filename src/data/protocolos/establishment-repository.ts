@@ -5,4 +5,6 @@ export interface EstablishmentRepository {
   create(data: CreateEstablishmentProps): Promise<Establishment>
 
   update(id: number, data: CreateEstablishmentProps): Promise<void>
+
+  remove(id: number): Promise<void>
 }
