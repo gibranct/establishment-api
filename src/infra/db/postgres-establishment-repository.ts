@@ -31,9 +31,8 @@ export class PostgresEstablishmentRepository
     return establishment ?? null
   }
 
-  // eslint-disable-next-line no-unused-vars
-  remove(id: number): Promise<void> {
-    return Promise.resolve()
+  async remove(id: number): Promise<void> {
+    await getRepository(Establishment).delete(id)
   }
 
   async update(id: number, data: UpdateEstablishmentProps): Promise<void> {
