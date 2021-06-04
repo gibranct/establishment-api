@@ -28,6 +28,6 @@ export class Establishment {
   @Column()
   name!: string
 
-  @Column()
+  @Column(() => Address)
   address!: Address
 }

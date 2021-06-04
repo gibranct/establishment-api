@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { createConnection } from 'typeorm'
 
-import Entities from '@/domain/entities'
+import * as Entities from '@/domain/entities'
 import DBConfig from '@/config/database'
 import logger from '@/loaders/logger'
 
