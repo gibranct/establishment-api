@@ -12,9 +12,9 @@ app.use(express.urlencoded({ extended: true }))
 morgan.token('body', (req: express.Request) => {
   const isTheContentJson = req.headers['content-type']?.includes(
     'application/json'
-  );
+  )
   if (isTheContentJson) {
-    return JSON.stringify(req.body);
+    return JSON.stringify(req.body)
   }
   return 'body-empty'
 })
