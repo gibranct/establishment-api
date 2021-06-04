@@ -4,6 +4,7 @@ import {
   makeCreateEstablishmentController,
   makeUpdateEstablishmentController,
   makeDeleteEstablishmentController,
+  makeFindByIdEstablishmentController,
 } from '@/main/factories'
 
 const router = Router()
@@ -20,6 +21,10 @@ router.put('/establishments/:id', (req, res) =>
 
 router.delete('/establishments/:id', (req, res) =>
   makeDeleteEstablishmentController().handle(req, res)
+)
+
+router.get('/establishments/:id', (req, res) =>
+  makeFindByIdEstablishmentController().handle(req, res)
 )
 
 export default router
