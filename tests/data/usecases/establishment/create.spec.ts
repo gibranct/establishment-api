@@ -33,7 +33,7 @@ const makeFakeEstablishment = (): CreateEstablishmentProps => ({
   },
 })
 
-describe('CreatePauseSchedule', () => {
+describe('CreateEstablishment', () => {
   test('deve chamar o validator com os valores corretos', async () => {
     const { sut } = makeSut()
     const validateSpy = jest.spyOn(establishmentValidationSchema, 'validate')
