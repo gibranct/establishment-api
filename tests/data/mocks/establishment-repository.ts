@@ -8,6 +8,11 @@ import {
 export const makeEstablishmentRepositoryStub = (): EstablishmentRepository => {
   class EstablishmentRepositoryStub implements EstablishmentRepository {
     // eslint-disable-next-line no-unused-vars
+    findById(id: number): Promise<Establishment | null> {
+      return Promise.resolve(new Establishment())
+    }
+
+    // eslint-disable-next-line no-unused-vars
     remove(id: number): Promise<void> {
       return Promise.resolve()
     }
