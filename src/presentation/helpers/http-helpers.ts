@@ -34,3 +34,9 @@ export const created = (data: any, message?: string): HttpResponse => ({
   message,
   data,
 })
+
+export const unauthorized = (): HttpResponse => ({
+  status: 401,
+  title: 'Usuário não Autenticado',
+  message: 'Você precisa estar autenticado para acessar este recurso',
+})
