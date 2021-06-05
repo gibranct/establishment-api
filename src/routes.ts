@@ -7,6 +7,7 @@ import {
   makeFindByIdEstablishmentController,
   makeFindAllEstablishmentController,
   makeCreateUserController,
+  makeLoginController,
 } from '@/main/factories'
 
 const router = Router()
@@ -34,5 +35,7 @@ router.get('/establishments', (req, res) =>
 )
 
 router.post('/users', (req, res) => makeCreateUserController().handle(req, res))
+
+router.post('/login', (req, res) => makeLoginController().handle(req, res))
 
 export default router

@@ -6,6 +6,7 @@ export type HttpResponse = {
   message?: string
   data?: any
   totalRegisters?: number
+  jwtToken?: string
 }
 
 export interface Controller {
