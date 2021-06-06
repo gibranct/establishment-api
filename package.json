@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored && webpack --config webpack.config.js",
     "start": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
-    "test": "jest --passWithNoTests --verbose --noStackTrace --runInBand --unhandled-rejections=strict --watch"
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --unhandled-rejections=strict --watch"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
