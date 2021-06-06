@@ -62,4 +62,12 @@ export class PostgresEstablishmentRepository
 
     return [count, data]
   }
+
+  async findByCnpj(cnpj: string): Promise<Establishment | null> {
+    const establishment = await getRepository(Establishment).findOne({
+      cnpj,
+    })
+
+    return establishment ?? null
+  }
 }

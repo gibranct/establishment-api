@@ -6,5 +6,8 @@ import { Controller } from '@/presentation/protocols/controller'
 export const makeCreateEstablishmentController = (): Controller => {
   const establishmenRepo = new PostgresEstablishmentRepository()
   const createEstablishment = new CreateEstablishment(establishmenRepo)
-  return new CreateEstablishmentController(createEstablishment)
+  return new CreateEstablishmentController(
+    createEstablishment,
+    establishmenRepo
+  )
 }

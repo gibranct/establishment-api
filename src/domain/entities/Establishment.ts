@@ -22,7 +22,7 @@ export class Establishment {
   @PrimaryGeneratedColumn()
   id!: number
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, unique: true })
   cnpj!: string
 
   @Column({ nullable: false })

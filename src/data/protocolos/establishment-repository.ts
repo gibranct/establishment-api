@@ -15,5 +15,7 @@ export interface EstablishmentRepository {
 
   findById(id: number): Promise<Establishment | null>
 
+  findByCnpj(cnpj: string): Promise<Establishment | null>
+
   findAll(params: PaginationParams): Promise<[number, Array<Establishment>]>
 }

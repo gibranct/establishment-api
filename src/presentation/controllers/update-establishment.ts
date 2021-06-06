@@ -27,12 +27,22 @@ export class UpdateEstablishmentController implements Controller {
   async handle(req: Request, res: Response<HttpResponse>) {
     try {
       const establishmentId = Number.parseInt(req.params.id, 10)
-      const hasEstablishment = await this.establishmentRepo.findById(
+      const establishmentToUpdate = await this.establishmentRepo.findById(
         establishmentId
       )
 
-      if (!hasEstablishment) {
+      if (!establishmentToUpdate) {
         return res.status(404).json(notFound('Estabelecimento não encontrado'))
+      }
+
+      const establishment = await this.establishmentRepo.findByCnpj(
+        req.body.cnpj
+      )
+
+      if (establishment && establishment.id !== establishmentToUpdate.id) {
+        return res
+          .status(400)
+          .json(badRequest(new Error('Não pode haver CNPJ duplicado')))
       }
 
       await this.updateEstablishment.handle(establishmentId, req.body)
