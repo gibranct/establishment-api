@@ -32,7 +32,12 @@ export class Login {
         user.password
       )
       if (isValid) {
-        const accessToken = await this.tokenGenerator.generate(String(user.id))
+        const accessToken = await this.tokenGenerator.generate(
+          JSON.stringify({
+            userId: user.id,
+            userName: user.name,
+          })
+        )
         return accessToken
       }
     }

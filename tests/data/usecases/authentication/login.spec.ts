@@ -84,11 +84,16 @@ describe('Login', () => {
     expect(accessToken).toBeNull()
   })
 
-  test('deve chamar TokenGenerator com o id correto', async () => {
+  test('deve chamar TokenGenerator com os valores corretos', async () => {
     const { sut, tokenGeneratorStub } = makeSut()
     const tokenGeneratorSpy = jest.spyOn(tokenGeneratorStub, 'generate')
     await sut.handle(makeFakeLogin())
-    expect(tokenGeneratorSpy).toHaveBeenCalledWith('1')
+    expect(tokenGeneratorSpy).toHaveBeenCalledWith(
+      JSON.stringify({
+        userId: 1,
+        userName: 'valid_name',
+      })
+    )
   })
 
   test('deve retornar o token', async () => {

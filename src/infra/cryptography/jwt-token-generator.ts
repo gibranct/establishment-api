@@ -10,6 +10,6 @@ export class JwtTokenGenerator implements TokenGenerator {
   }
 
   async generate(plaintext: string): Promise<string> {
-    return jwt.sign({ id: plaintext }, this.secret)
+    return jwt.sign(plaintext, this.secret)
   }
 }
