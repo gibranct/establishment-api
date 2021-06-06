@@ -14,7 +14,7 @@ export class PostgresEstablishmentRepository
       cnpj: data.cnpj,
       name: data!.name,
       address: {
-        zipCode: data.address?.zipCode,
+        number: data.address?.number,
         neighborhood: data.address?.neighborhood,
         city: data.address?.city,
         state: data.address?.state,
@@ -40,7 +40,7 @@ export class PostgresEstablishmentRepository
       cnpj: data.cnpj,
       name: data!.name,
       address: {
-        zipCode: data.address?.zipCode,
+        number: data.address?.number,
         neighborhood: data.address?.neighborhood,
         city: data.address?.city,
         state: data.address?.state,

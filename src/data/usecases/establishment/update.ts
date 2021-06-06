@@ -2,14 +2,14 @@ import { EstablishmentRepository } from '@/data/protocolos'
 import { establishmentValidationSchema } from '@/data/usecases/establishment'
 
 export type UpdateEstablishmentProps = {
-  cnpj?: string
-  name?: string
-  address?: {
-    zipCode?: string
-    neighborhood?: string
-    city?: string
-    state?: string
-    street?: string
+  cnpj: string
+  name: string
+  address: {
+    number: string
+    neighborhood: string
+    city: string
+    state: string
+    street: string
   }
 }
 

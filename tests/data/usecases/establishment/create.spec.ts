@@ -25,7 +25,7 @@ const makeFakeEstablishment = (): CreateEstablishmentProps => ({
   cnpj: '82321089000152',
   name: 'fake_name',
   address: {
-    zipCode: 'fake_zip_code',
+    number: 'fake_number',
     neighborhood: 'fake_neighborhood',
     city: 'fake_city',
     state: 'fake_state',
@@ -47,7 +47,7 @@ describe('CreateEstablishment', () => {
       const { sut } = makeSut()
       const response = await sut.handle({
         ...makeFakeEstablishment(),
-        name: undefined,
+        name: '',
       })
       expect(response).toBeInstanceOf(ValidationError)
     } catch (error) {
@@ -60,7 +60,7 @@ describe('CreateEstablishment', () => {
       const { sut } = makeSut()
       const response = await sut.handle({
         ...makeFakeEstablishment(),
-        cnpj: undefined,
+        cnpj: '',
       })
       expect(response).toBeInstanceOf(ValidationError)
     } catch (error) {
@@ -68,19 +68,19 @@ describe('CreateEstablishment', () => {
     }
   })
 
-  test('deve retornar um erro se o cep do endereço não for passado', async () => {
+  test('deve retornar um erro se o número do endereço não for passado', async () => {
     try {
       const { sut } = makeSut()
       const response = await sut.handle({
         ...makeFakeEstablishment(),
         address: {
           ...makeFakeEstablishment().address,
-          zipCode: '',
+          number: '',
         },
       })
       expect(response).toBeInstanceOf(ValidationError)
     } catch (error) {
-      expect(error.message).toEqual('CEP é obrigatório')
+      expect(error.message).toEqual('Número é obrigatório')
     }
   })
 

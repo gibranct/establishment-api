@@ -9,7 +9,7 @@ const establishmentValidationSchema = Yup.object().shape({
       cnpjValidator.isValid(String(value))
     ),
   address: Yup.object().shape({
-    zipCode: Yup.string().required('CEP é obrigatório'),
+    number: Yup.string().required('Número é obrigatório'),
     neighborhood: Yup.string().required('Bairro é obrigatório'),
     city: Yup.string().required('Cidade é obrigatória'),
     state: Yup.string().required('Estado é obrigatório'),
