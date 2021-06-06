@@ -80,7 +80,7 @@ describe('CreateEstablishment', () => {
       })
       expect(response).toBeInstanceOf(ValidationError)
     } catch (error) {
-      expect(error.message).toEqual('Número é obrigatório')
+      expect(error.message).toEqual('Número do endereço é obrigatório')
     }
   })
 
@@ -96,7 +96,7 @@ describe('CreateEstablishment', () => {
       })
       expect(response).toBeInstanceOf(ValidationError)
     } catch (error) {
-      expect(error.message).toEqual('Cidade é obrigatória')
+      expect(error.message).toEqual('Cidade do endereço é obrigatória')
     }
   })
 
@@ -112,7 +112,7 @@ describe('CreateEstablishment', () => {
       })
       expect(response).toBeInstanceOf(ValidationError)
     } catch (error) {
-      expect(error.message).toEqual('Bairro é obrigatório')
+      expect(error.message).toEqual('Bairro do endereço é obrigatório')
     }
   })
 
@@ -128,7 +128,7 @@ describe('CreateEstablishment', () => {
       })
       expect(response).toBeInstanceOf(ValidationError)
     } catch (error) {
-      expect(error.message).toEqual('Estado é obrigatório')
+      expect(error.message).toEqual('Estado do endereço é obrigatório')
     }
   })
 
@@ -144,7 +144,7 @@ describe('CreateEstablishment', () => {
       })
       expect(response).toBeInstanceOf(ValidationError)
     } catch (error) {
-      expect(error.message).toEqual('Rua é obrigatória')
+      expect(error.message).toEqual('Rua do endereço é obrigatória')
     }
   })
 
