@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express'
+import cors from 'cors'
 import morgan from 'morgan'
 
 import routes from '../routes'
@@ -18,6 +19,8 @@ morgan.token('body', (req: express.Request) => {
   }
   return 'body-empty'
 })
+
+app.use(cors())
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   const { offset, limit } = req.headers
