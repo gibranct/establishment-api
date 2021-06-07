@@ -18,11 +18,11 @@ const environments = {
   production: {
     type: 'postgres',
     synchronize: true,
-    host: env.get('DB_HOST').default('localhost').asString(),
+    host: env.get('DB_HOST').default('127.0.0.1').asString(),
     port: env.get('DB_PORT').default(5432).asIntPositive(),
-    username: env.get('DB_USER').default('test').asString(),
-    password: env.get('DB_PASS').default('postgres').asString(),
-    database: env.get('DB_NAME').default('test').asString(),
+    username: env.get('DB_USER').default('root').asString(),
+    password: env.get('DB_PASS').default('root').asString(),
+    database: env.get('DB_NAME').default('establishment-db').asString(),
   },
 }
 
