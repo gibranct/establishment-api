@@ -12,12 +12,14 @@ services:
       - POSTGRES_DB=establishment-db
       - POSTGRES_PASSWORD=root
       - POSTGRES_USER=root
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data
     networks:
       - node-network
   api:
     build:
       context: .
-    entrypoint: dockerize -wait tcp://postgres:5432 -timeout 40s node server.prod.js
+    entrypoint: dockerize -wait tcp://postgres:5432 -timeout 120s node server.prod.js
     tty: true
     container_name: api
     environment:

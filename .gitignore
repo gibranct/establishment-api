@@ -3,3 +3,5 @@ dist
 server.prod.js
 
 *.env
+
+pg-data
