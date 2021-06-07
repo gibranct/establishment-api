@@ -17,7 +17,7 @@ const environments = {
   },
   production: {
     type: 'postgres',
-    synchronize: false,
+    synchronize: true,
     host: env.get('DB_HOST').default('localhost').asString(),
     port: env.get('DB_PORT').default(5432).asIntPositive(),
     username: env.get('DB_USER').default('test').asString(),
