@@ -19,6 +19,8 @@ COPY --from=build /opt/app/server.prod.js ./server.prod.js
 COPY --from=build /opt/app/.env ./.env
 COPY --from=build /opt/app/package* .
 
+ENV NODE_ENV=production
+
 RUN npm install --only=production
 
 EXPOSE 4000
