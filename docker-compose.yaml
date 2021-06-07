@@ -19,7 +19,7 @@ services:
   api:
     build:
       context: .
-    entrypoint: dockerize -wait tcp://postgres:5432 -timeout 120s node server.prod.js
+    entrypoint: dockerize -wait tcp://postgres:5432 -timeout 240s node server.prod.js
     tty: true
     container_name: api
     environment:
